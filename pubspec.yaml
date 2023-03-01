@@ -66,6 +66,8 @@ flutter:
   assets:
     - assets/images/anushka_sharma.jpg
     - assets/images/water-pattern.png
+    - assets/images/logo-facebook.png
+    - assets/images/logo-twitter.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
