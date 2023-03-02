@@ -16,17 +16,17 @@ class _MyAppState extends State<MyApp> {
 
   _MyAppState() {
     audioPlayer = AudioPlayer();
-    audioPlayer.onAudioPositionChanged.listen((duration) {
+    audioPlayer.onPositionChanged.listen((duration) {
       setState(() {
         this.duration = duration.toString();
       });
     });
 
-    audioPlayer.setReleaseMode(ReleaseMode.LOOP);
+    audioPlayer.setReleaseMode(ReleaseMode.loop);
   }
 
   void play(String url) async {
-    await audioPlayer.play(url);
+    await audioPlayer.play(UrlSource(url));
   }
 
   void pause() async {

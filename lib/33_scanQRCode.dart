@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:qrscan/qrscan.dart' as scanner;
 
 void main() => runApp(MyApp());
 
@@ -25,7 +26,10 @@ class _MyAppState extends State<MyApp> {
                 height: 20,
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  text = await scanner.scan();
+                  setState(() {});
+                },
                 child: Text("Scan"),
               ),
             ],
