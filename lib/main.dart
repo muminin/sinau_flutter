@@ -1,23 +1,53 @@
+import 'dart:convert';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  PostResult postResult = null;
+  String chars =
+      'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
+  Random rnd = Random();
+
+  String getRandomString(int length) => String.fromCharCodes(Iterable.generate(
+      length, (_) => chars.codeUnitAt(rnd.nextInt(chars.length))));
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.green,
-          title: const Text("35. ClipPath"),
+          title: const Text("36. HTTP Request / Koneksi ke API (Post Method)"),
         ),
         body: Center(
-          child: ClipPath(
-            clipper: MyClipper(),
-            child: const Image(
-              width: 350,
-              image: AssetImage("assets/images/anushka_sharma.jpg"),
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                (postResult != null
+                    ? '${postResult.id} | ${postResult.name} | ${postResult.job} | ${postResult.createdAt}'
+                    : 'Tidak ada Data'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  PostResult.connectToAPI(
+                          getRandomString(5), getRandomString(10))
+                      .then((value) {
+                    postResult = value;
+                    setState(() {});
+                  });
+                },
+                child: const Text("POST"),
+              ),
+            ],
           ),
         ),
       ),
@@ -25,22 +55,34 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
+class PostResult {
+  String id, name, job, createdAt;
 
-    path.lineTo(0, size.height);
-    // path.quadraticBezierTo(
-    //     size.width / 2, size.height * 0.75, size.width, size.height);
-    path.conicTo(
-        size.width / 2, size.height * 0.75, size.width, size.height, 100);
-    path.lineTo(size.width, 0);
-    path.close();
+  PostResult({this.id, this.name, this.job, this.createdAt});
 
-    return path;
+  // * Mapping dari JSON
+  // ? Map<String, dynamci> ==> Map<Key JSON, Value JSON>
+  factory PostResult.createPostResult(Map<String, dynamic> object) {
+    return PostResult(
+      id: object['id'],
+      name: object['name'],
+      job: object['job'],
+      createdAt: object['createdAt'],
+    );
   }
 
-  @override
-  bool shouldReclip(covariant CustomClipper<Path> oldClipper) => false;
+  // * Menghubungkan aplikasi ke API
+  static Future<PostResult> connectToAPI(String name, String job) async {
+    String apiURL = 'https://reqres.in/api/users';
+
+    var apiResult = await http.post(apiURL, body: {
+      'name': name,
+      'job': job,
+    });
+
+    // * Convert from JSON
+    var jsonObject = json.decode(apiResult.body);
+
+    return PostResult.createPostResult(jsonObject);
+  }
 }
