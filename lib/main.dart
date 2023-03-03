@@ -25,12 +25,12 @@ class MyApp extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Consumer(
+                Consumer<ApplicationColor>(
                   builder: (context, value, child) => AnimatedContainer(
                     margin: const EdgeInsets.all(5),
                     width: 100,
                     height: 100,
-                    color: Colors.lightBlue,
+                    color: value.color,
                     duration: const Duration(milliseconds: 500),
                   ),
                 ),
@@ -41,8 +41,9 @@ class MyApp extends StatelessWidget {
                       margin: const EdgeInsets.all(5),
                       child: const Text("AB"),
                     ),
-                    Consumer(
+                    Consumer<ApplicationColor>(
                       builder: (context, value, child) => Switch(
+                        inactiveTrackColor: value.color,
                         value: value.isLightBlue,
                         onChanged: (newValue) {
                           value.isLightBlue = newValue;
