@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.white70,
             title: Consumer<ApplicationColor>(
               builder: (context, value, child) => Text(
-                "42. Provider State Management",
+                "42. Provider State Management SIP",
                 style: TextStyle(color: value.color),
               ),
             ),
