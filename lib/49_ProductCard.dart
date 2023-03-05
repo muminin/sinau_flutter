@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,25 +16,44 @@ class MyApp extends StatelessWidget {
               "49. Product Card (BoxShadow, RoundedRectangleBorder)"),
           backgroundColor: firstColor,
         ),
-        body: Container(
-          margin: const EdgeInsets.all(20),
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: ProductCard(
-              imageUrl:
-                  "https://www.ptppi.co.id/wp-content/uploads/2021/03/img-buah-buahan.jpg",
-              name: "Buah Mix 1Kg",
-              price: "Rp25.000",
-              notification: "Diskon 10%",
-              quantity: 0,
-              onAddCartTap: () {},
-              onIncrementTap: () {},
-              onDecrementTap: () {},
+        body: ChangeNotifierProvider<ProductState>(
+          create: (context) => ProductState(),
+          child: Container(
+            margin: const EdgeInsets.all(20),
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: Consumer<ProductState>(
+                builder: (context, product, _) => ProductCard(
+                  imageUrl:
+                      "https://www.ptppi.co.id/wp-content/uploads/2021/03/img-buah-buahan.jpg",
+                  name: "Buah Mix 1Kg",
+                  price: "Rp25.000",
+                  notification: (product.quantity > 5) ? "Diskon 10%" : null,
+                  quantity: product.quantity,
+                  onAddCartTap: () {},
+                  onIncrementTap: () {
+                    product.quantity++;
+                  },
+                  onDecrementTap: () {
+                    if (product.quantity > 0) product.quantity--;
+                  },
+                ),
+              ),
             ),
           ),
         ),
       ),
     );
+  }
+}
+
+class ProductState with ChangeNotifier {
+  int _quantity = 0;
+
+  int get quantity => _quantity;
+  set quantity(int newValue) {
+    _quantity = newValue;
+    notifyListeners();
   }
 }
 
@@ -176,7 +196,7 @@ class ProductCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         GestureDetector(
-                          onTap: () {},
+                          onTap: onIncrementTap,
                           child: Container(
                             width: 30,
                             height: 30,
@@ -193,7 +213,7 @@ class ProductCard extends StatelessWidget {
                           style: textStyle,
                         ),
                         GestureDetector(
-                          onTap: () {},
+                          onTap: onDecrementTap,
                           child: Container(
                             width: 30,
                             height: 30,
@@ -228,4 +248,3 @@ class ProductCard extends StatelessWidget {
   }
 }
 // product_card.dart END
-
