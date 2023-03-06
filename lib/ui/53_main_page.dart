@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:belajar_flutter/bloc/user_bloc.dart';
-import 'package:belajar_flutter/ui/user_card.dart';
+import 'package:belajar_flutter/bloc/53_user_bloc.dart';
+import 'package:belajar_flutter/ui/53_user_card.dart';
 import 'package:flutter/material.dart';
-import 'package:belajar_flutter/model/user.dart';
+import 'package:belajar_flutter/model/53_user.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainPage extends StatelessWidget {

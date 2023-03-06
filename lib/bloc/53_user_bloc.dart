@@ -1,5 +1,5 @@
 import 'package:bloc/bloc.dart';
-import 'package:belajar_flutter/model/user.dart';
+import 'package:belajar_flutter/model/53_user.dart';
 
 class UserBloc extends Bloc<int, User> {
   @override
