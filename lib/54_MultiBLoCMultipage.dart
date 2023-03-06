@@ -4,6 +4,9 @@ import 'package:belajar_flutter/ui/54_main_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+/// flutter_bloc: ^3.0.0
+/// http: ^0.12.0+2
+
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
