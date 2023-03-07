@@ -23,5 +23,5 @@
 /// hive_generator: ^0.5.2
 /// path_provider: ^1.3.1
 ///
-/// REPO:
-/// https://github.com/muminin/57_Hive-Database-in-Pure-Dart
+/// Resource:
+/// https://www.youtube.com/watch?v=4nXD2m5LeXw&list=PLZQbl9Jhl-VACm40h5t6QMDB92WlopQmV&index=62
