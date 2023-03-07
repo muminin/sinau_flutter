@@ -10,7 +10,7 @@ packages:
     source: hosted
     version: "2.10.0"
   bloc:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: bloc
       sha256: ccc49d51be007d6bcf4cd113bd4a3ed70ebd31eb74359335366d07df8261ada4
