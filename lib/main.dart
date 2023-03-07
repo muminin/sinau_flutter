@@ -22,20 +22,6 @@
 /// hive_flutter: ^0.2.1
 /// hive_generator: ^0.5.2
 /// path_provider: ^1.3.1
-
-import 'package:belajar_flutter/ui/57_main_page.dart';
-import 'package:flutter/material.dart';
-
-void main() => runApp(MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MainPage(),
-    );
-  }
-}
+///
+/// REPO:
+/// https://github.com/muminin/57_Hive-Database-in-Pure-Dart
