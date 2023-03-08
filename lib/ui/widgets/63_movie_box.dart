@@ -4,8 +4,9 @@ import 'package:belajar_flutter/ui/styles/63_styles.dart';
 
 class MovieBox extends StatelessWidget {
   final String url;
+  final double scale;
 
-  MovieBox(this.url);
+  MovieBox(this.url, {this.scale = 1});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +15,9 @@ class MovieBox extends StatelessWidget {
         ..background.image(
           url: url,
           fit: BoxFit.cover,
-        ),
+        )
+        ..width(200 * scale)
+        ..height(300 * scale),
     );
   }
 }
