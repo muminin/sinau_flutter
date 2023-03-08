@@ -233,6 +233,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.0"
+  flare_dart:
+    dependency: transitive
+    description:
+      name: flare_dart
+      sha256: "55a2cfa73b781c9399d515d23ba95821fb08e7aaaef9fc29c5752cc5e7be1fa8"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.3.4"
+  flare_flutter:
+    dependency: "direct main"
+    description:
+      name: flare_flutter
+      sha256: "7eaeab3c247b782403771f54ca5bea2f5bfb243eaff3f379c95daa09c09bb6b3"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.8.3"
   flutter:
     dependency: "direct main"
     description: flutter
