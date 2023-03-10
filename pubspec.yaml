@@ -33,6 +33,7 @@ dependencies:
   equatable: ^2.0.5
   flutter:
     sdk: flutter
+  google_fonts: ^1.1.2
 dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_test:
@@ -58,6 +59,7 @@ flutter:
     - assets/images/logo-facebook.png
     - assets/images/logo-twitter.png
     - assets/rives/switch_daytime.flr
+    - fonts/GoogleFonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
