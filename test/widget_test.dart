@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:belajar_flutter/main.dart';
+import 'package:belajar_flutter/78_ShimmerEffect.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
