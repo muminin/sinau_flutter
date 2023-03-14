@@ -3,9 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 /// Usage:
-/// 1. SingleTickerProviderStateMixin
-/// 2. AnimationController
-/// 3. Animation
+/// 1. AnimatedWidget
+/// 2. AnimatedBuilder
 
 void main() => runApp(MyApp());
 
@@ -71,26 +70,69 @@ class _MainPageState extends State<MainPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[850],
       appBar: AppBar(
-        title: const Text("80. Animasi Dasar"),
+        backgroundColor: Colors.black,
+        title: const Text("81. Animated Widget & Animated Builder"),
       ),
       body: Center(
-        child: Transform.rotate(
-          angle: animation.value,
-          child: Container(
-            width: 100,
-            height: 100,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(25)),
-              gradient: LinearGradient(
-                colors: <Color>[Colors.red, Colors.amber],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            RotatingContainer(
+              doubleAnimation: animation,
+            ),
+            RotationTransition(
+              animation: animation,
+              child: const Text(
+                "AYEEEEE",
+                style: TextStyle(color: Colors.white),
               ),
             ),
-          ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class RotatingContainer extends AnimatedWidget {
+  const RotatingContainer({Key key, Animation<double> doubleAnimation})
+      : super(key: key, listenable: doubleAnimation);
+
+  @override
+  Widget build(BuildContext context) {
+    Animation<double> animation = listenable as Animation<double>;
+
+    return Transform.rotate(
+      angle: animation.value,
+      child: Container(
+        width: 65,
+        height: 65,
+        color: Colors.red,
+      ),
+    );
+  }
+}
+
+class RotationTransition extends StatelessWidget {
+  final Widget child;
+  final Animation<double> animation;
+
+  const RotationTransition({Key key, this.child, this.animation})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, child) {
+        return Transform.rotate(
+          angle: animation.value,
+          child: child,
+        );
+      },
+      child: child,
     );
   }
 }
